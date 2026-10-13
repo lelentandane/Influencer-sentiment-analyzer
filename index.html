@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Micro-Influencer Audience Quality &amp; Brand-Fit Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>Audience Quality &amp; Brand-Fit Analyzer</h1>
+      <p class="lead">Check whether a creator's audience is real, engaged and relevant to your product before you pay for a partnership.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="status-banner" class="banner info" hidden></div>
+
+    <section class="card" id="input-card" aria-labelledby="form-title">
+      <h2 id="form-title">Analyze a creator</h2>
+      <p class="muted">Answer two short questions. A third is optional. New here? Try the sample report first to see what you will get.</p>
+
+      <form id="analyze-form" novalidate>
+        <!-- Step 1 -->
+        <div class="step">
+          <div class="step-head"><span class="step-num">1</span><h3>Who is the creator?</h3></div>
+
+          <div class="tabs" role="tablist" aria-label="Data source">
+            <button type="button" role="tab" id="tab-youtube" aria-selected="true" aria-controls="panel-youtube">YouTube channel</button>
+            <button type="button" role="tab" id="tab-csv" aria-selected="false" aria-controls="panel-csv">Upload comments</button>
+          </div>
+
+          <div id="panel-youtube" role="tabpanel" aria-labelledby="tab-youtube">
+            <label for="creator">Channel handle or link</label>
+            <input id="creator" type="text" autocomplete="off" placeholder="@channelname or youtube.com/@channelname">
+            <p class="help">On YouTube, open the creator's channel. The handle starts with @ and sits under the channel name. You can also paste the channel link.</p>
+          </div>
+
+          <div id="panel-csv" role="tabpanel" aria-labelledby="tab-csv" hidden>
+            <p class="help first">Use this for any other platform. Export or copy the comments into a spreadsheet and save it as a CSV file.</p>
+
+            <label for="creator-name">Creator name <span class="optional">(optional)</span></label>
+            <input id="creator-name" type="text" maxlength="200" placeholder="e.g. Alex Runs">
+
+            <label for="creator-description">What does this creator post about?</label>
+            <textarea id="creator-description" rows="3" maxlength="800" placeholder="e.g. Beginner running tips, gear reviews and race recaps."></textarea>
+
+            <label for="comments-file">Comments file (.csv)</label>
+            <input id="comments-file" type="file" accept=".csv,text/csv">
+            <p class="help">One comment per row. The only required column is named <strong>comment</strong> (or <strong>text</strong>). Optional columns: author, likes, date. Up to 5 MB. <a href="sample-comments.csv" download>Download an example file</a>.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step">
+          <div class="step-head"><span class="step-num">2</span><h3>What are you promoting?</h3></div>
+
+          <label for="brand">Describe your product in a sentence or two</label>
+          <textarea id="brand" rows="3" maxlength="500" placeholder="e.g. Eco-friendly running shoes for beginner runners"></textarea>
+          <button type="button" class="link-btn" id="example-btn">Use an example</button>
+
+          <label for="audience">Who do you want to reach? <span class="optional">(optional)</span></label>
+          <input id="audience" type="text" maxlength="200" placeholder="e.g. People starting to run, aged 20 to 35">
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+          <div class="step-head"><span class="step-num">3</span><h3>What would the creator charge? <span class="optional">(optional)</span></h3></div>
+
+          <label for="fee">Fee for one sponsored video</label>
+          <input id="fee" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 500">
+          <p class="help">Any currency. This is only used to estimate your cost per quality engagement. YouTube channels only.</p>
+        </div>
+
+        <div id="form-error" class="banner error" role="alert" hidden></div>
+
+        <div class="actions">
+          <button type="submit" id="submit-btn" class="primary">Analyze creator</button>
+          <button type="button" id="sample-btn" class="secondary">See a sample report</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="loading" class="card loading" hidden aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <div>
+        <h2>Analyzing...</h2>
+        <ol id="loading-steps" class="loading-steps"></ol>
+        <p class="muted small">This can take up to a minute.</p>
+      </div>
+    </section>
+
+    <section id="results" hidden aria-live="polite"></section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <p>Results are based on a sample of recent public comments and videos. They are indicators to support a decision, not proof that a creator's followers are real or fake.</p>
+  </footer>
+
+  <script src="vendor/chart.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
