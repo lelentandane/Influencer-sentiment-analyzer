@@ -1,10 +1,9 @@
 # Micro-Influencer Audience Quality & Brand-Fit Analyzer
 
-![Tests](https://github.com/lelentandane/influencer-sentiment-analyzer/actions/workflows/tests.yml/badge.svg)
 
 A web app that helps a brand decide whether a creator is worth a partnership. Enter a YouTube channel (or upload comments from any platform) and describe your product. The app reports how real and engaged the audience is, how well the creator fits your product, and what a sponsored video would cost per quality engagement.
 
-![A finished sample report](docs/screenshots/report.png)
+![A finished sample report](report.png)
 
 ## Try it in 30 seconds (no API keys)
 
@@ -214,4 +213,4 @@ MIT. See `LICENSE`. Chart.js is bundled under its own MIT license (`frontend/ven
 ## Author
 
 **Sphelele Ntandane**
-[GitHub](https://github.com/lelentandane) | [LinkedIn](https://www.linkedin.com/in/lelentandane)
+[GitHub](https://github.com/lelentandane) | [LinkedIn](https://www.linkedin.com/in/sphelele-ntandane)
