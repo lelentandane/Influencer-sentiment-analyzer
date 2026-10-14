@@ -1,6 +1,22 @@
 # Micro-Influencer Audience Quality & Brand-Fit Analyzer
 
+![Tests](https://github.com/lelentandane/influencer-sentiment-analyzer/actions/workflows/tests.yml/badge.svg)
+
 A web app that helps a brand decide whether a creator is worth a partnership. Enter a YouTube channel (or upload comments from any platform) and describe your product. The app reports how real and engaged the audience is, how well the creator fits your product, and what a sponsored video would cost per quality engagement.
+
+![A finished sample report](docs/screenshots/report.png)
+
+## Try it in 30 seconds (no API keys)
+
+```bash
+git clone https://github.com/lelentandane/influencer-sentiment-analyzer.git
+cd influencer-sentiment-analyzer
+python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cd backend && uvicorn main:app --reload
+```
+
+Open **http://localhost:8000** and select **See a sample report**. Live analysis needs the API keys described under Getting started.
 
 ## What you get
 
@@ -74,8 +90,12 @@ influencer-sentiment-analyzer/
 │   ├── style.css        # Styling, light and dark themes
 │   ├── app.js           # Form handling, safe rendering, charts
 │   ├── sample-comments.csv
+│   ├── fonts/           # Bundled Figtree (OFL)
 │   └── vendor/chart.umd.js
+├── tests/               # pytest suite
+├── docs/screenshots/
 ├── requirements.txt
+├── requirements-dev.txt
 └── README.md
 ```
 
@@ -93,7 +113,7 @@ influencer-sentiment-analyzer/
 ### Setup
 
 ```bash
-git clone https://github.com/Lelentandane/influencer-sentiment-analyzer.git
+git clone https://github.com/lelentandane/influencer-sentiment-analyzer.git
 cd influencer-sentiment-analyzer
 
 python -m venv venv
@@ -144,6 +164,15 @@ A YouTube analysis reads the 10 most recent videos and up to 100 recent top-leve
 
 **Status codes for `/api/analyze`:** `200` success, `400` unreadable CSV or unsupported channel link, `404` channel not found, `422` invalid input, `429` rate limit or YouTube quota reached, `502` upstream service error, `503` missing API key.
 
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+The suite covers the scoring formulas and labels, comment cleaning and spam, duplicate and generic detection, engagement metrics, YouTube link parsing, CSV loading, the trust score and the API (input validation, missing keys, a full CSV analysis and the rate limiter), with the AI calls replaced by fakes. It runs on every push through GitHub Actions.
+
 ## Security and privacy
 
 - **Commenter privacy:** commenter identities are hashed on ingest and raw names are never kept. Nothing is stored between requests.
@@ -172,7 +201,7 @@ A YouTube analysis reads the 10 most recent videos and up to 100 recent top-leve
 ## Roadmap
 
 - [ ] Measure label accuracy against a hand-labeled comment set
-- [ ] Automated tests (pytest) for parsers, scoring and the API
+- [x] Automated tests (pytest) for parsers, scoring and the API
 - [ ] Result caching
 - [ ] Compare several creators side by side
 - [ ] Export the report as PDF
@@ -184,5 +213,5 @@ MIT. See `LICENSE`. Chart.js is bundled under its own MIT license (`frontend/ven
 
 ## Author
 
-**<your name>**
-[GitHub](https://github.com/Lelentandane) | [LinkedIn](https://www.linkedin.com/in/sphelele-ntandane-9a7178382)
+**Sphelele Ntandane**
+[GitHub](https://github.com/lelentandane) | [LinkedIn](https://www.linkedin.com/in/lelentandane)
