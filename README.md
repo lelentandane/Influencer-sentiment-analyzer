@@ -1,14 +1,30 @@
 # Micro-Influencer Audience Quality & Brand-Fit Analyzer
 
+![Tests](https://github.com/Lelentandane/influencer-sentiment-analyzer/actions/workflows/tests.yml/badge.svg)
 
 A web app that helps a brand decide whether a creator is worth a partnership. Enter a YouTube channel (or upload comments from any platform) and describe your product. The app reports how real and engaged the audience is, how well the creator fits your product, and what a sponsored video would cost per quality engagement.
 
-![A finished sample report](report.png)
+![A finished sample report](docs/screenshots/report.png)
+
+## The problem
+
+Brands choosing a micro-influencer usually see follower counts and average views. Neither says whether the comments come from real people who care, or whether the creator's audience matches the product. This tool reads a sample of recent comments and the channel's engagement numbers and returns three things: how healthy the audience is, how well the creator fits a specific product, and what a sponsored video would cost per quality engagement.
+
+**Built for:** small brands and marketing freelancers comparing creators before spending a budget.
+
+## What this project demonstrates
+
+- **Data work:** cleaning and analysing comment and video data with Pandas, and turning it into measures with clear formulas.
+- **External APIs:** the YouTube Data API for channel data and comments, with a CSV upload path for other platforms.
+- **Working with an LLM safely:** comments are classified into fixed categories through a tool schema, while spam, duplicates and engagement ratios are plain code.
+- **Privacy:** commenter identities in uploaded files are hashed, and uploaded files are validated for size and format.
+- **Honest scoring:** every score shows its parts and formula, and the app does not claim to detect fake followers or predict ROI.
+- **Testing and delivery:** a pytest suite, continuous integration on every push, rate limiting, and a no-key demo mode.
 
 ## Try it in 30 seconds (no API keys)
 
 ```bash
-git clone https://github.com/lelentandane/influencer-sentiment-analyzer.git
+git clone https://github.com/Lelentandane/influencer-sentiment-analyzer.git
 cd influencer-sentiment-analyzer
 python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
@@ -29,16 +45,16 @@ Open **http://localhost:8000** and select **See a sample report**. Live analysis
 
 ```mermaid
 flowchart LR
-    A[Dashboard] -->|POST /api/analyze| B[main.py<br/>FastAPI]
-    B --> C[scraper.py<br/>YouTube API or CSV]
-    C --> D[utils.py<br/>cleaning and rule-based signals]
-    D --> E[sentiment.py<br/>LLM comment classification]
-    E --> F[matcher.py<br/>LLM brand fit]
-    D --> G[scoring.py]
+    A["Dashboard"] -->|"POST /api/analyze"| B["main.py (FastAPI)"]
+    B --> C["scraper.py: YouTube API or CSV"]
+    C --> D["utils.py: cleaning and rule-based signals"]
+    D --> E["sentiment.py: LLM comment classification"]
+    E --> F["matcher.py: LLM brand fit"]
+    D --> G["scoring.py"]
     E --> G
     F --> G
     G --> B
-    B -->|JSON report| A
+    B -->|"JSON report"| A
 ```
 
 ### Scoring
@@ -112,7 +128,7 @@ influencer-sentiment-analyzer/
 ### Setup
 
 ```bash
-git clone https://github.com/lelentandane/influencer-sentiment-analyzer.git
+git clone https://github.com/Lelentandane/influencer-sentiment-analyzer.git
 cd influencer-sentiment-analyzer
 
 python -m venv venv
@@ -213,4 +229,4 @@ MIT. See `LICENSE`. Chart.js is bundled under its own MIT license (`frontend/ven
 ## Author
 
 **Sphelele Ntandane**
-[GitHub](https://github.com/lelentandane) | [LinkedIn](https://www.linkedin.com/in/sphelele-ntandane)
+[GitHub](https://github.com/Lelentandane) | [LinkedIn](https://www.linkedin.com/in/sphelele-ntandane-9a7178382)
