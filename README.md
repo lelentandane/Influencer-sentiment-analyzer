@@ -1,10 +1,10 @@
 # Micro-Influencer Audience Quality & Brand-Fit Analyzer
 
-![Tests](https://github.com/Lelentandane/influencer-sentiment-analyzer/actions/workflows/tests.yml/badge.svg)
+
 
 A web app that helps a brand decide whether a creator is worth a partnership. Enter a YouTube channel (or upload comments from any platform) and describe your product. The app reports how real and engaged the audience is, how well the creator fits your product, and what a sponsored video would cost per quality engagement.
 
-![A finished sample report](docs/screenshots/report.png)
+![A finished sample report](report.png)
 
 ## The problem
 
